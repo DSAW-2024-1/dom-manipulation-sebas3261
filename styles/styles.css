@@ -90,18 +90,22 @@
     display: none;
 }
 
-.main{
-    min-height: 100%;
-    background-image: url("/assets/pexels-jimmy-chan-998499.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
+.show2{
+    height: 100vh;
+    width: 100vw;
+    display: none;
+}
+
+.task{
+    height: 100vh;
+    width: 100vw;
+    display: none;
+}
+
+.td{
     display: flex;
-    justify-content: space-between;
-    position: sticky;
-    bottom: 0;
     flex-direction: column;
+    justify-content: space-between;
     padding: 1rem;
     .boton{
         display: flex;
@@ -115,13 +119,26 @@
     }
 }
 
+.main{ 
+    min-height: 100%;
+    background-image: url("/assets/pexels-pixabay-40142.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    
+}
+
+
+
 @media screen and (min-width: 768px) {
     .all{
         display: flex;
     }
+    
     .show{
         display: block;
-        background-image: url("/assets/pexels-jimmy-chan-998499.jpg");
+        background-image: url("/assets/pexels-pixabay-40142.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
