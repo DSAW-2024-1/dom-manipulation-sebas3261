@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const textSpan = document.createElement('span');
                     textSpan.textContent = taskText;
                     newDiv.appendChild(textSpan);
-                    newDiv.className = "new";
+                    newDiv.className = 'new';
                     // Agregar el nuevo div al contenedor correspondiente
                     if (a == 1) {
                         newtask1.appendChild(newDiv);
@@ -109,27 +109,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                     // Agregar evento para eliminar al arrastrar a la izquierda
                     let initialX = null;
-                    newDiv.addEventListener('touchstart', function(e) {
-                        initialX = e.touches[0].clientX;
+                    newDiv.addEventListener('mousedown', function(e) {
+                        initialX = e.clientX;
+                        newDiv.style.cursor = 'grabbing';
                     });
-                    newDiv.addEventListener('touchmove', function(e) {
+                    newDiv.addEventListener('mousemove', function(e) {
                         if (initialX !== null) {
-                            const currentX = e.touches[0].clientX;
+                            const currentX = e.clientX;
                             const diffX = currentX - initialX;
                             if (diffX < -50) { // Se considera como arrastrar hacia la izquierda
                                 newDiv.style.transform = `translateX(${diffX}px)`;
                             }
                         }
                     });
-                    newDiv.addEventListener('touchend', function(e) {
+                    newDiv.addEventListener('mouseup', function(e) {
                         if (initialX !== null) {
-                            const currentX = e.changedTouches[0].clientX;
+                            const currentX = e.clientX;
                             const diffX = currentX - initialX;
                             if (diffX < -50) {
                                 newDiv.remove(); // Eliminar el elemento si se ha arrastrado lo suficiente hacia la izquierda
                             } else {
                                 newDiv.style.transform = ''; // Volver al estado original si no se ha arrastrado lo suficiente
                             }
+                            newDiv.style.cursor = 'pointer';
                             initialX = null;
                         }
                     });
@@ -148,4 +150,5 @@ document.addEventListener('DOMContentLoaded', function() {
     ret1.addEventListener("click", handleClick);
     ret2.addEventListener("click", handleClick);
     add1.addEventListener('click', function(event){newtask(event, 1)});
+    add2.addEventListener('click', function(event){newtask(event, 2)});
 });
