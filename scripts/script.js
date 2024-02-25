@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         inputElement.setAttribute('type', 'text');
         inputElement.setAttribute('id', 'taskInput');
         inputElement.setAttribute('placeholder', 'Add a Task');
+        inputElement.style.width = '100%'; // Input ocupa todo el espacio del contenedor
         
         if (a == 1) {
             add1.innerHTML = '';
@@ -72,53 +73,79 @@ document.addEventListener('DOMContentLoaded', function() {
             add2.innerHTML = '';
             add2.appendChild(inputElement);
         }
-    
+
         inputElement.focus();
-        if(a ==1)
-        {
-            inputElement.addEventListener('keydown', function(e) {
-                if (e.keyCode === 13) {
-                    // Verificar que el input no esté vacío
-                    if (inputElement.value.trim() !== '') {
-                        // Guardar el texto ingresado en la variable global
-                        taskText = inputElement.value.trim();
-                        // Crear un nuevo div con el texto ingresado
-                        const newDiv = document.createElement('div');
-                        newDiv.textContent = taskText;
-                        // Agregar el nuevo div al contenedor "newtask1"
+
+        inputElement.addEventListener('keydown', function(e) {
+            if (e.keyCode === 13) {
+                // Verificar que el input no esté vacío
+                if (inputElement.value.trim() !== '') {
+                    // Guardar el texto ingresado en la variable global
+                    taskText = inputElement.value.trim();
+                    // Crear un nuevo div con el texto ingresado
+                    const newDiv = document.createElement('div');
+                    const checkBox = document.createElement('input');
+                    checkBox.type = 'checkbox';
+                    newDiv.appendChild(checkBox);
+                    const textSpan = document.createElement('span');
+                    textSpan.textContent = taskText;
+                    newDiv.appendChild(textSpan);
+                    newDiv.className = "new";
+                    // Agregar el nuevo div al contenedor correspondiente
+                    if (a == 1) {
                         newtask1.appendChild(newDiv);
-                    }
-                    
-                    // Restaurar el contenido original en el contenedor
-                    add1.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/></svg><p>Add a Task</p>';
-                }
-            });
-        }
-        else
-        {
-            inputElement.addEventListener('keydown', function(e) {
-                if (e.keyCode === 13) {
-                    // Verificar que el input no esté vacío
-                    if (inputElement.value.trim() !== '') {
-                        // Guardar el texto ingresado en la variable global
-                        taskText = inputElement.value.trim();
-                        // Crear un nuevo div con el texto ingresado
-                        const newDiv = document.createElement('div');
-                        newDiv.textContent = taskText;
-                        // Agregar el nuevo div al contenedor "newtask1"
+                    } else {
                         newtask2.appendChild(newDiv);
                     }
-                    
-                    // Restaurar el contenido original en el contenedor
+                    checkBox.addEventListener('change', function() {
+                        if (checkBox.checked) {
+                            textSpan.style.textDecoration = 'line-through';
+                        } else {
+                            textSpan.style.textDecoration = 'none';
+                        }
+                    });
+                    newDiv.addEventListener('dblclick', function() {
+                        newDiv.remove();
+                    });
+                    // Agregar evento para eliminar al arrastrar a la izquierda
+                    let initialX = null;
+                    newDiv.addEventListener('touchstart', function(e) {
+                        initialX = e.touches[0].clientX;
+                    });
+                    newDiv.addEventListener('touchmove', function(e) {
+                        if (initialX !== null) {
+                            const currentX = e.touches[0].clientX;
+                            const diffX = currentX - initialX;
+                            if (diffX < -50) { // Se considera como arrastrar hacia la izquierda
+                                newDiv.style.transform = `translateX(${diffX}px)`;
+                            }
+                        }
+                    });
+                    newDiv.addEventListener('touchend', function(e) {
+                        if (initialX !== null) {
+                            const currentX = e.changedTouches[0].clientX;
+                            const diffX = currentX - initialX;
+                            if (diffX < -50) {
+                                newDiv.remove(); // Eliminar el elemento si se ha arrastrado lo suficiente hacia la izquierda
+                            } else {
+                                newDiv.style.transform = ''; // Volver al estado original si no se ha arrastrado lo suficiente
+                            }
+                            initialX = null;
+                        }
+                    });
+                }
+                
+                // Restaurar el contenido original en el contenedor
+                if (a == 1) {
+                    add1.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/></svg><p>Add a Task</p>';
+                } else {
                     add2.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/></svg><p>Add a Task</p>';
                 }
-            });
-        }
-        
+            }
+        });
     }
 
     ret1.addEventListener("click", handleClick);
     ret2.addEventListener("click", handleClick);
-    add1.addEventListener('click', function(event){newtask(event,1)});
-    add2.addEventListener('click', function(event){newtask(event,2)});
+    add1.addEventListener('click', function(event){newtask(event, 1)});
 });
