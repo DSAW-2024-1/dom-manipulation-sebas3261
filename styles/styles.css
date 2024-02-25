@@ -107,6 +107,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 1rem;
+    width: 100%; 
     .boton{
         display: flex;
         align-items: center;
@@ -121,14 +122,23 @@
 
 .main{ 
     min-height: 100%;
-    background-image: url("/assets/pexels-pixabay-40142.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width: 100%;
     
 }
 
+.bt:hover{
+    cursor: pointer;
+}
+
+#taskInput {
+    border: none; /* Elimina el borde del input */
+    outline: none; /* Elimina el resaltado del input cuando está enfocado */
+    background-color: transparent; /* Hace que el fondo del input sea transparente */
+    color: inherit; /* Hace que el color del texto del input sea el mismo que el del texto circundante */
+    font-size: inherit; /* Hace que el tamaño de la fuente del input sea el mismo que el del texto circundante */
+}
 
 
 @media screen and (min-width: 768px) {
@@ -138,7 +148,6 @@
     
     .show{
         display: block;
-        background-image: url("/assets/pexels-pixabay-40142.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
