@@ -2,4 +2,188 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: white;
+}
+
+.body{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.background{
+    background-color: black;
+}
+
+.box1{
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.svg{
+    display: block;
+    color: white;
+}
+
+.user {
+    padding: 1rem;
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    img {
+      border-radius: 100%;
+      max-width: 2rem;
+      max-height: auto;
+    }
+    .login {
+      padding-left: 20px;
+      flex-grow: 1;
+      margin: auto;
+    }
+
+}
+
+.lists{
+    padding: 1rem;
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    align-items: center;
+    h2{
+        margin:0;
+        margin-left: 20px;
+    }
+}
+
+.segment1 {
+    border-bottom: 1px solid #1F1F21;
+    padding-bottom: 1rem;
+}
+
+.newli{
+    
+    padding: 1rem;
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    bottom: 0;
+    h2{
+        flex-grow: 1;
+    }
+    
+}
+
+.show{
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    background-image: url(./pexels-pixabay-40142.jpg);
+}
+
+.show2{
+    height: 100vh;
+    width: 100vw;
+    display: none;
+}
+
+.task{
+    height: 100vh;
+    width: 100vw;
+    display: none;
+}
+
+.td{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    width: 100%; 
+    .boton{
+        display: flex;
+        align-items: center;
+        background-color: #212121;
+        border-radius: 10px;
+        padding: 0.5rem;
+        margin-bottom: 20%;
+        p{
+            margin: 0;
+        }
+    }
+}
+
+.coso{
+    background-color: #212121;
+    border-radius: 10px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.main{ 
+    max-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+}
+
+.bt:hover{
+    cursor: pointer;
+}
+
+#taskInput {
+    border: none; /* Elimina el borde del input */
+    outline: none; /* Elimina el resaltado del input cuando está enfocado */
+    background-color: transparent; /* Hace que el fondo del input sea transparente */
+    color: inherit; /* Hace que el color del texto del input sea el mismo que el del texto circundante */
+    font-size: inherit; /* Hace que el tamaño de la fuente del input sea el mismo que el del texto circundante */
+}
+
+.siz{
+    overflow: auto;
+    height: 70vh;
+}
+
+
+
+.new{
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-bottom: 2px;
+    background-color: #1F1F21;
+    span{
+        margin-left: 10px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .all{
+        display: flex;
+    }
+    
+    .show{
+        display: block;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+    }
+
+    .box1 {
+        min-width: 410px;
+        border-right: 1px solid #1F1F21;
+        padding-bottom: 1rem;
+    }
+
 }
