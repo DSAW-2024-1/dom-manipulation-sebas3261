@@ -94,7 +94,7 @@
     }
     .main{
         display: block;
-        background-image: url("/assets/pexels-jimmy-chan-998499.jpg");
+        background-image: url("./assets/pexels-jimmy-chan-998499.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
